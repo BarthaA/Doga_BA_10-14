@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foglalás</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Szállásfoglalás</h1>
+    <form method="post" action="/booking">
+      <div class="form-group">
+        <label for="name">Név</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= bookingData?.name || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail cím</label>
+        <input type="email" class="form-control" id="email" name="email" value="<%= bookingData?.email || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Dátum</label>
+        <input type="datetime-local" class="form-control" id="date" name="date" value="<%= bookingData?.date || '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="guests">Vendégek</label>
+        <input type="number" class="form-control" id="guests" name="guests" min="1" max="10" value="<%= bookingData?.guests || 1 %>" required>
+      </div>
+      <% if (errors && errors.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+          <% errors.forEach(function(e) { %>
+            <p><%= e %></p>
+          <% }); %>
+        </div>
+        <% } %>
+      <button type="submit" class="btn btn-primary">Foglalás</button>
+    </form>
+  </div>
+</body>
+</html>
